@@ -50,7 +50,6 @@ class linkedList{
 
 //Menu driven linked list
 
-import java.lang.*;
 import java.util.Scanner;
 
 
