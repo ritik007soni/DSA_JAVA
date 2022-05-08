@@ -128,6 +128,17 @@ public class linkedList{
         }
     }
 
+    static int deleteAtBeggining(linkedList lis1){
+        if(lis1.head == null){
+            System.out.println("list is empty");
+            return -1;
+        }
+        int tempData;
+        tempData = lis1.head.data;
+        lis1.head = lis1.head.next;
+        return tempData;
+    }
+
     static void display(linkedList lis1){
         Node tempHead = lis1.head;
         while(tempHead != null){
@@ -170,7 +181,7 @@ static linkedList push(linkedList lis1,int d){
 
 static int pop(linkedList lis1){
     int val;
-    val = deleteEnd(lis1);
+    val = deleteAtBeggining(lis1);
     return val;
 }
 
