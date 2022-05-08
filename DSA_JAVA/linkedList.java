@@ -53,7 +53,7 @@ class linkedList{
 import java.util.Scanner;
 
 
-class linkedList{
+public class linkedList{
 
     static Scanner sc = new Scanner(System.in);
 
@@ -63,7 +63,7 @@ class linkedList{
         Node next;
     }
 
-    static void insertEnd(linkedList lis1){
+    public static linkedList insertEnd(linkedList lis1){
         Node newNode = new Node();
         System.out.println("Enter the data: ");
         int d = sc.nextInt();
@@ -71,6 +71,7 @@ class linkedList{
             newNode.data = d;
             newNode.next = null;
             lis1.head = newNode;
+            return lis1;
         }
         else{
             Node last = lis1.head;
@@ -80,27 +81,30 @@ class linkedList{
             newNode.data = d;
             newNode.next = null;
             last.next = newNode;
+            return lis1;
         }
     }
 
-    static void insertBeggining(linkedList lis1){
+    public static linkedList insertBeggining(linkedList lis1, int d){
         Node newNode = new Node();
-        int d = sc.nextInt();
         if(lis1.head == null){
             newNode.data = d;
             newNode.next = null;
             lis1.head = newNode;
+            return lis1;
         }
         else{
             newNode.next = lis1.head;
             newNode.data = d;
             lis1.head = newNode;
+            return lis1;
         }
     }
 
-    static void deleteEnd(linkedList lis1){
+    public static int deleteEnd(linkedList lis1){
         if(lis1.head == null){
-            System.out.println("Linked list is empty");
+            System.out.println("list is empty:");
+            return -1;
         }
         else{
             Node last = lis1.head;
@@ -110,12 +114,16 @@ class linkedList{
                 last = last.next;
             }
             if(prev == last){
+                int tempData = lis1.head.data;
                 lis1.head = null;
-                System.out.println("Node deleted in 0");
+                System.out.println("Node deleted");
+                return tempData;
             }
             else{
+                int tempData = prev.data;
                 prev.next = null;
                 System.out.println("Node deleted");
+                return tempData;
             }
         }
     }
@@ -128,7 +136,7 @@ class linkedList{
         }
     }
 
-
+/**
     public static void main(String[] args){
         linkedList lis1 = new linkedList();
         while(true){
@@ -150,5 +158,42 @@ class linkedList{
                 break;
             }
         }
+    }
+}
+**/
+// Implementing stack using linked list as abstract data type
+
+static linkedList push(linkedList lis1,int d){
+    lis1 = insertBeggining(lis1,d);
+    return lis1;
+}
+
+static int pop(linkedList lis1){
+    int val;
+    val = deleteEnd(lis1);
+    return val;
+}
+
+    public static void main(String[] args){
+        linkedList lis1 = new linkedList();
+        while(true){
+            System.out.println("to push press 1 \nto pop press 2 \nto desplay press 3 :");
+            int opt = sc.nextInt();
+            if(opt == 1){
+                System.out.println("Enter the element:");
+                int d = sc.nextInt();
+                push(lis1, d);
+            }
+            else if(opt == 2){
+                pop(lis1);
+            }
+            else if(opt == 3){
+                display(lis1);
+            }
+            else{
+                break;
+            }
+        }
+
     }
 }
